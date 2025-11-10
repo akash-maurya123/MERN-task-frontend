@@ -17,7 +17,7 @@ export default function AddTask() {
     }
 
     try {
-      await axios.post(`${API_BASE}/tasks`, { name, type, description });
+      await axios.post(`${API_BASE}/api/tasks`, { name, type, description });
       setMessage('✅ Task added successfully!');
       setName('');
       setDescription('');
@@ -30,9 +30,50 @@ export default function AddTask() {
   return (
     <div>
       {message && <div className="alert alert-info py-2">{message}</div>}
-      <form onSubmit={handleSubmit} className="row g-2 align-items-center">
+      {/* <form onSubmit={handleSubmit} className="row g-2 align-items-center"> */}
         {/* Your input fields and button remain same */}
+
+          <form onSubmit={handleSubmit} className="row g-2 align-items-center">
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Task name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        <div className="col-md-3">
+          <select
+            className="form-select"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value="Personal">Personal</option>
+            <option value="Work">Work</option>
+            <option value="Study">Study</option>
+          </select>
+        </div>
+
+        <div className="col-md-4">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+        <div className="col-md-1 text-center">
+          <button type="submit" className="btn btn-success w-100">
+            Add
+          </button>
+        </div>
       </form>
+
+      {/* </form> */}
     </div>
   );
 }
@@ -70,45 +111,45 @@ export default function AddTask() {
 //   return (
 //     <div>
 //       {message && <div className="alert alert-info py-2">{message}</div>}
-//       <form onSubmit={handleSubmit} className="row g-2 align-items-center">
-//         <div className="col-md-4">
-//           <input
-//             type="text"
-//             className="form-control"
-//             placeholder="Task name"
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//           />
-//         </div>
+      // <form onSubmit={handleSubmit} className="row g-2 align-items-center">
+      //   <div className="col-md-4">
+      //     <input
+      //       type="text"
+      //       className="form-control"
+      //       placeholder="Task name"
+      //       value={name}
+      //       onChange={(e) => setName(e.target.value)}
+      //     />
+      //   </div>
 
-//         <div className="col-md-3">
-//           <select
-//             className="form-select"
-//             value={type}
-//             onChange={(e) => setType(e.target.value)}
-//           >
-//             <option value="Personal">Personal</option>
-//             <option value="Work">Work</option>
-//             <option value="Study">Study</option>
-//           </select>
-//         </div>
+      //   <div className="col-md-3">
+      //     <select
+      //       className="form-select"
+      //       value={type}
+      //       onChange={(e) => setType(e.target.value)}
+      //     >
+      //       <option value="Personal">Personal</option>
+      //       <option value="Work">Work</option>
+      //       <option value="Study">Study</option>
+      //     </select>
+      //   </div>
 
-//         <div className="col-md-4">
-//           <input
-//             type="text"
-//             className="form-control"
-//             placeholder="Description"
-//             value={description}
-//             onChange={(e) => setDescription(e.target.value)}
-//           />
-//         </div>
+      //   <div className="col-md-4">
+      //     <input
+      //       type="text"
+      //       className="form-control"
+      //       placeholder="Description"
+      //       value={description}
+      //       onChange={(e) => setDescription(e.target.value)}
+      //     />
+      //   </div>
 
-//         <div className="col-md-1 text-center">
-//           <button type="submit" className="btn btn-success w-100">
-//             Add
-//           </button>
-//         </div>
-//       </form>
+      //   <div className="col-md-1 text-center">
+      //     <button type="submit" className="btn btn-success w-100">
+      //       Add
+      //     </button>
+      //   </div>
+      // </form>
 //     </div>
 //   );
 // }
